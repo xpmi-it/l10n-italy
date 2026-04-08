@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="account_invoice_line_it_FatturaPA_description_line">
+        <t t-set="it_values" t-value="export_line['it_values']" />
+        <DettaglioLinee>
+            <NumeroLinea t-out="it_values['numero_linea']" />
+            <Descrizione t-out="format_alphanumeric(it_values['descrizione'], 1000)" />
+            <PrezzoUnitario t-out="format_float(0.0, 8)" />
+            <PrezzoTotale t-out="format_float(0.0, 8)" />
+            <AliquotaIVA t-out="format_float(it_values['aliquota_iva'], 2)" />
+            <Natura t-if="it_values['natura']" t-out="it_values['natura']" />
+        </DettaglioLinee>
+    </template>
+
+    <template
+        id="account_invoice_it_FatturaPA_export_inherit_description_lines"
+        inherit_id="l10n_it_edi.account_invoice_it_FatturaPA_export"
+    >
+        <xpath expr="//DatiBeniServizi/t[@t-foreach='base_lines']" position="replace">
+            <t t-foreach="export_lines" t-as="export_line">
+                <t t-if="export_line['line_type'] == 'description'">
+                    <t t-call="l10n_it_edi_description_lines.account_invoice_line_it_FatturaPA_description_line" />
+                </t>
+                <t t-else="">
+                    <t t-set="base_line" t-value="export_line['base_line']" />
+                    <t t-call="l10n_it_edi.account_invoice_line_it_FatturaPA" />
+                </t>
+            </t>
+        </xpath>
+    </template>
+</odoo>
