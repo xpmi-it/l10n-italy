@@ -43,8 +43,8 @@ Le funzionalità principali incluse sono:
 
 1. Anteprima e Download del file XML:
 
-   -  Aggiunge un pulsante ("Preview XML") direttamente nel form della
-      fattura.
+   -  Aggiunge un pulsante ("Preview") direttamente nel form della
+      fattura, sia per fatture inviate che ricevute.
    -  Dalla stessa finestra della fattura, è possibile scaricare il file
       XML generato.
 
@@ -65,6 +65,18 @@ Le funzionalità principali incluse sono:
       modalità e termini stabiliti con decreto ministeriale ai sensi
       dell'articolo 73 del DPR 633/72. Da impostare in odoo nell'azienda
       o direttamente in fattura.
+   -  ``<AltriDatiGestionali>`` (2.2.1.16): dati gestionali aggiuntivi
+      che possono essere inseriti manualmente su ogni riga fattura ed
+      esportati nel file XML FatturaPA. Ogni voce include:
+
+      -  ``<TipoDato>``: tipo di dato (max 10 caratteri, obbligatorio)
+      -  ``<RiferimentoTesto>``: riferimento testuale (max 60 caratteri)
+      -  ``<RiferimentoNumero>``: riferimento numerico (fino a 8
+         decimali)
+      -  ``<RiferimentoData>``: riferimento data
+      -  Per aggiungere questi dati, aprire la riga fattura e compilare
+         la sezione "Altri Dati Gestionali".
+
    -  ``<IndirizzoResa>``: rappresenta l'indirizzo di consegna della
       merce.
 
@@ -203,7 +215,8 @@ The main features included are:
 
 1. XML File Preview and Download:
 
-   -  Adds a button ("Preview XML") directly in the invoice form.
+   -  Adds a button ("Preview") directly in the invoice form, both for
+      exported and imported invoices.
    -  From the same invoice form, you can download the generated XML
       file.
 
@@ -222,6 +235,18 @@ The main features included are:
    -  ``<Art73>``: indicates if the document was issued according to
       methods and terms established by ministerial decree pursuant to
       article 73 of DPR 633/72
+   -  ``<AltriDatiGestionali>`` (2.2.1.16): additional management data
+      that can be manually entered on each invoice line and exported to
+      the FatturaPA XML file. Each entry includes:
+
+      -  ``<TipoDato>``: data type (max 10 characters, required)
+      -  ``<RiferimentoTesto>``: text reference (max 60 characters)
+      -  ``<RiferimentoNumero>``: numeric reference (up to 8 decimal
+         places)
+      -  ``<RiferimentoData>``: date reference
+      -  To add this data, open the invoice line and fill in the "Other
+         Management Data" section.
+
    -  ``<IndirizzoResa>``: represents the shipping address of the goods.
 
 3. Improvements in XML invoice import:
@@ -373,6 +398,14 @@ Le uniche configurazioni disponibili sono:
    -  ``<CedentePrestatore>``
    -  ``<RappresentanteFiscale>``
 
+-  Prodotto predefinito fatture elettroniche fornitore: è possibile
+   impostare un prodotto nel campo apposito del fornitore, nella scheda
+   "Fatturazione", sezione "Fatture cliente". Durante l'importazione di
+   livello "Massimo": questo prodotto sarà impostato nelle righe della
+   fattura importata se nessun altro prodotto viene trovato. Durante
+   l'importazione di livello "Aliquota fiscale": questo prodotto sarà
+   impostato nelle righe della fattura importata.
+
 Non sono necessarie altre configurazioni specifiche per
 l10n_it_edi_extension: una volta installato, le sue funzionalità sono
 attive e si integrano automaticamente nell'interfaccia esistente.
@@ -423,6 +456,12 @@ The only available configurations are:
    -  ``<CessionarioCommittente>``
    -  ``<CedentePrestatore>``
    -  ``<RappresentanteFiscale>``
+
+-  E-bills default product: You can set a product in the supplier's
+   field in the "Invoicing" tab, "Customer Invoices" section. During
+   "Maximum" level imports: this product will be set in the imported
+   invoice lines if no other product is found. During "Tax Rate" level
+   imports: this product will be set in the imported invoice lines.
 
 No other specific configurations are required for l10n_it_edi_extension:
 once installed, its features are active and automatically integrate into
@@ -481,6 +520,9 @@ Contributors
 
 -  Simone Rubino <simone.rubino88@gmail.com>
 -  Nextev Srl <odoo@nextev.it>
+-  `Agile Business Group <https://www.agilebg.com/>`__:
+
+   -  Alex Comba <alex.comba@agilebg.com>
 
 Maintainers
 -----------
